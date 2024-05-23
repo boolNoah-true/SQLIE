@@ -10,7 +10,7 @@ def find_mysql_executable():
         'C:\\Program Files (x86)\\MySQL\\MySQL Server 8.0\\bin\\mysql.exe',
         '/usr/local/mysql/bin/mysql',
         '/usr/local/bin/mysql',
-        '/Applications/XAMPP/bin/mysql'
+        '/Applications/XAMPP/xamppfiles/bin/mysql'
     ]
 
     for path in paths:
@@ -23,7 +23,7 @@ def find_mysql_executable():
 
     return None
 
-def run_mysql_import(dbname):
+def run_mysql_import(dbname, sqlname):
     mysql_path = find_mysql_executable()
     if not mysql_path:
         print("mysql executable not found. Please ensure MySQL is installed and mysql is in your PATH.")
@@ -31,7 +31,7 @@ def run_mysql_import(dbname):
 
     print(f"mysql found at: {mysql_path}")
 
-    sql_file = f'{dbname}.sql'
+    sql_file = f'{sqlname}.sql'
 
     if not os.path.isfile(sql_file):
         print(f"SQL file {sql_file} not found. Please ensure the file exists in the same directory as this script.")

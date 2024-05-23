@@ -10,10 +10,12 @@ def main():
 
     if choice == '1':
         dbname = input("Enter the name of the database to import: ")
-        Import.run_mysql_import(dbname)
+        sqlname = input("Enter a name for the sql file: ")
+        Import.run_mysql_import(dbname, sqlname)
     elif choice == '2':
         dbname = input("Enter the name of the database to export: ")
-        Export.run_mysqldump(dbname)
+        sqlname = input("Enter a name for the sql file: ")
+        Export.run_mysqldump(dbname, sqlname)
     elif choice == '3':
         print("Exiting...")
     else:

@@ -10,7 +10,7 @@ def locate_mysqldump():
         'C:\\Program Files (x86)\\MySQL\\MySQL Server 8.0\\bin\\mysqldump.exe',
         '/usr/local/mysql/bin/mysqldump',
         '/usr/local/bin/mysqldump',
-        '/Applications/XAMPP/bin/mysqldump'
+        '/Applications/XAMPP/xamppfiles/bin/mysql'
     ]
 
     for path in paths:
@@ -23,7 +23,7 @@ def locate_mysqldump():
 
     return None
 
-def run_mysqldump(dbname):
+def run_mysqldump(dbname, sqlname):
     mysqldump_path = locate_mysqldump()
     if not mysqldump_path:
         print("mysqldump not found. Please ensure MySQL is installed and mysqldump is in your PATH.")
@@ -32,9 +32,9 @@ def run_mysqldump(dbname):
     print(f"mysqldump found at: {mysqldump_path}")
 
     if sys.platform == 'win32':
-        command = f'"{mysqldump_path}" -u root -p {dbname} > {dbname}.sql'
+        command = f'"{mysqldump_path}" -u root -p {dbname} > {sqlname}.sql'
     else:
-        command = f'{mysqldump_path} -u root -p {dbname} > {dbname}.sql'
+        command = f'{mysqldump_path} -u root -p {dbname} > {sqlname}.sql'
 
     print("Please enter the MySQL root password when prompted.")
     subprocess.run(command, shell=True)
